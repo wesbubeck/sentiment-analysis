@@ -122,12 +122,14 @@ export default {
 <style>
 .good {
   background-color: #003d73;
+  color: white;
 }
 .kindagood {
   background-color: #1ecfd6;
 }
 .bad {
   background-color: #bb1924;
+  color: white;
 }
 .kindabad {
   background-color: #ee6c81;
