@@ -66,22 +66,17 @@
         v => !!v || 'Name is required',
         v => (v && v.length >= 10) || 'Name must be more than 10 characters',
       ],
-      sentimentFeeling: [
-          ['Super Mad', "#BB1924"],
-          ['Kinda Mad', '#EE6C81'],
-          ['eh', '#BABCC5'],
-          ['Kinda Happy', '#1ECFD6'],
-          ['Happy Happy Happy', '#003D73']
-      ],
       checkbox: false,
       sentimentData: {}
     }),
 
     methods: {
       validate () {
+          debugger;
         if (this.$refs.form.validate()) {
           this.sentimentData = SentimentAnalysis.fetchSentiment(this.name);
           this.dialog = true;
+          this.reset();
           this.snackbar = true
         }
       },
