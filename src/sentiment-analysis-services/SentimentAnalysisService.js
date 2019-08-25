@@ -1,10 +1,9 @@
 const Sentiment = require('sentiment');
 
 const sentiment = new Sentiment();
-const result = sentiment.analyze('I love you sexy beast');
 
-export function fetchSentiment() {
-  return result;
+export function fetchSentiment(text) {
+  return sentiment.analyze(text);
 }
 
 const SentimentAnalysis = {

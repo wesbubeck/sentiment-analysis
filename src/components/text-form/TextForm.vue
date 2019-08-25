@@ -12,6 +12,11 @@
       required
     ></v-text-field>
 
+    <SentimentModal
+      :is-dialog-open="dialog"
+      :sentiment-data="sentimentData"
+      @close="closeDialog()"/>
+
     <v-checkbox
       v-model="checkbox"
       :rules="[v => !!v || 'You must agree to continue!']"
@@ -45,34 +50,43 @@
   </v-form>
 </template>
 <script>
+  import SentimentAnalysis from '../../sentiment-analysis-services/SentimentAnalysisService'
+  import SentimentModal from '../sentiment-modal/SentimentModal'
   export default {
+    components: {
+      SentimentModal
+    },
     data: () => ({
+      dialog: false,
       valid: true,
       name: '',
+      emotion: '',
+      emotionColor: '',
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        v => (v && v.length >= 10) || 'Name must be more than 10 characters',
       ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
+      sentimentFeeling: [
+          ['Super Mad', "#BB1924"],
+          ['Kinda Mad', '#EE6C81'],
+          ['eh', '#BABCC5'],
+          ['Kinda Happy', '#1ECFD6'],
+          ['Happy Happy Happy', '#003D73']
       ],
       checkbox: false,
+      sentimentData: {}
     }),
 
     methods: {
       validate () {
         if (this.$refs.form.validate()) {
+          this.sentimentData = SentimentAnalysis.fetchSentiment(this.name);
+          this.dialog = true;
           this.snackbar = true
         }
+      },
+      closeDialog () {
+          this.dialog = false;
       },
       reset () {
         this.$refs.form.reset()
