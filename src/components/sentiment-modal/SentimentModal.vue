@@ -5,17 +5,21 @@
         <v-card-title class="headline" :class="sentimetColor" primary-title>{{ titleMessage }}</v-card-title>
 
         <v-card-text>
-          <h3>Negative Words:</h3>
-          <li v-for="negativeWord in negativeWords">{{ negativeWord }}</li>
-          <h3>Positive Words:</h3>
-          <li v-for="positiveWord in positiveWords">{{ positiveWord }}</li>
+          <div class="negative-words">
+            <h3>Negative Words:</h3>
+            <li v-for="negativeWord in negativeWords">{{ negativeWord }}</li>
+          </div>
+          <div class="positive-words">
+            <h3>Positive Words:</h3>
+            <li v-for="positiveWord in positiveWords">{{ positiveWord }}</li>
+          </div>
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <div class="flex-grow-1"></div>
-          <v-btn color="primary" text @click="closeDialog()">Close</v-btn>
+          <v-btn color="primary" class="close-button" text @click="closeDialog()">Close</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -23,6 +27,7 @@
 </template>
 <script>
 import { posix } from "path";
+
 export default {
   props: {
     isDialogOpen: {
@@ -51,7 +56,6 @@ export default {
     setSentimentData(data) {
       if (!data.negative) return;
       const { negative, positive, score, comparative } = data;
-      console.log(comparative);
       this.negativeWords =
         negative.length < 1 ? ["There were no negative words"] : negative;
       this.positiveWords =

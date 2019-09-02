@@ -49,15 +49,16 @@
 </template>
 
 <script>
-import TextForm from "./text-form/TextForm";
+import TextForm from './text-form/TextForm';
+
 export default {
   components: {
-    TextForm
+    TextForm,
   },
   props: {
-    source: String
+    source: String,
   },
   data: () => ({
-  })
+  }),
 };
 </script>
