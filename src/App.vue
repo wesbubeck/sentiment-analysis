@@ -30,7 +30,7 @@ export default {
   name: 'App',
   components: {
     HelloWorld,
-    BaseTheme
+    BaseTheme,
   },
   data: () => ({
     //
