@@ -2,7 +2,7 @@
   <v-app id="inspire">
 
     <v-app-bar app color="indigo" dark>
-      <v-toolbar-title>Are They Mad?</v-toolbar-title>
+      <v-toolbar-title>You Mad, Bro?</v-toolbar-title>
     </v-app-bar>
 
     <v-content>

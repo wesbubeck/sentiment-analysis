@@ -5,7 +5,7 @@
       class="textMessage"
       :counter="10"
       :rules="nameRules"
-      label="Name"
+      label="Text"
       required
     ></v-text-field>
 
@@ -46,8 +46,8 @@ export default {
     emotion: "",
     emotionColor: "",
     nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length >= 10) || "Name must be more than 10 characters"
+      v => !!v || "Text is required",
+      v => (v && v.length >= 10) || "Text must be more than 10 characters"
     ],
     checkbox: false,
     sentimentData: {}
