@@ -19,7 +19,6 @@ describe('My First Test', () => {
     });
   });
   it('should display message that message must be more that 10 Characters', () => {
-    //TODO WES FIX NAME TO MESSAGE
     cy.get('.textMessage').contains('Name must be more than 10 characters');
   });
   it('SHould add a value to the input and try to submit w/o checking checkbox', () => {
